@@ -1,0 +1,1088 @@
+
+test> use products
+switched to db products
+
+products> db.products.find({price:{$gt:500}})
+[
+  {
+    _id: ObjectId('69b7c6a616ef2dd6c87c2909'),
+    name: 'Laptop Pro',
+    category: 'Laptops',
+    price: 1200,
+    stock: 15,
+    specs: { ram: 16, storage: 512 },
+    tags: [ 'work', 'tech' ]
+  },
+  {
+    _id: ObjectId('69b7c6a616ef2dd6c87c290a'),
+    name: 'Gaming PC',
+    category: 'Laptops',
+    price: 2500,
+    stock: 5,
+    specs: { ram: 32, storage: 1024 },
+    tags: [ 'gaming', 'high-end' ]
+  },
+  {
+    _id: ObjectId('69b7c6a616ef2dd6c87c290b'),
+    name: 'Phone 15',
+    category: 'Phones',
+    price: 900,
+    stock: 50,
+    specs: { ram: 8, storage: 128 },
+    tags: [ 'mobile', 'new' ]
+  },
+  {
+    _id: ObjectId('69b7c6a616ef2dd6c87c290c'),
+    name: 'Phone 14',
+    category: 'Phones',
+    price: 700,
+    stock: 20,
+    specs: { ram: 6, storage: 128 },
+    tags: [ 'mobile', 'sale' ]
+  },
+  {
+    _id: ObjectId('69b7c6a616ef2dd6c87c290d'),
+    name: 'Tablet Air',
+    category: 'Tablets',
+    price: 600,
+    stock: 30,
+    specs: { ram: 8, storage: 64 },
+    tags: [ 'media', 'lightweight' ]
+  }
+]
+
+
+products> db.products.find({ category: "Accessories", stock: { $gt: 50 } })
+[
+  {
+    _id: ObjectId('69b7c6a616ef2dd6c87c290f'),
+    name: 'Mechanical Keyboard',
+    category: 'Accessories',
+    price: 150,
+    stock: 100,
+    specs: { type: 'RGB' },
+    tags: [ 'gaming', 'office' ]
+  },
+  {
+    _id: ObjectId('69b7c6a616ef2dd6c87c2910'),
+    name: 'Wireless Mouse',
+    category: 'Accessories',
+    price: 50,
+    stock: 200,
+    specs: { battery: 'AA' },
+    tags: [ 'office' ]
+  },
+  {
+    _id: ObjectId('69b7c6a616ef2dd6c87c2911'),
+    name: 'USB-C Cable',
+    category: 'Accessories',
+    price: 15,
+    stock: 500,
+    specs: { length: 2 },
+    tags: [ 'cable', 'utility' ]
+  },
+  {
+    _id: ObjectId('69b7c6a616ef2dd6c87c2916'),
+    name: 'External SSD',
+    category: 'Accessories',
+    price: 120,
+    stock: 80,
+    specs: { storage: 1024 },
+    tags: [ 'storage', 'tech' ]
+  },
+  {
+    _id: ObjectId('69b7c6a616ef2dd6c87c2918'),
+    name: 'Gaming Mouse Pad',
+    category: 'Accessories',
+    price: 25,
+    stock: 150,
+    specs: { size: 'XL' },
+    tags: [ 'gaming' ]
+  },
+  {
+    _id: ObjectId('69b7c6a616ef2dd6c87c291c'),
+    name: 'Webcam Pro',
+    category: 'Accessories',
+    price: 90,
+    stock: 55,
+    specs: { resolution: '1080p' },
+    tags: [ 'work', 'streaming' ]
+  }
+]
+
+
+
+products> db.products.find({ "specs.ram": 8 })
+[
+  {
+    _id: ObjectId('69b7c6a616ef2dd6c87c290b'),
+    name: 'Phone 15',
+    category: 'Phones',
+    price: 900,
+    stock: 50,
+    specs: { ram: 8, storage: 128 },
+    tags: [ 'mobile', 'new' ]
+  },
+  {
+    _id: ObjectId('69b7c6a616ef2dd6c87c290d'),
+    name: 'Tablet Air',
+    category: 'Tablets',
+    price: 600,
+    stock: 30,
+    specs: { ram: 8, storage: 64 },
+    tags: [ 'media', 'lightweight' ]
+  },
+  {
+    _id: ObjectId('69b7c6a616ef2dd6c87c2913'),
+    name: 'Budget Laptop',
+    category: 'Laptops',
+    price: 400,
+    stock: 25,
+    specs: { ram: 8, storage: 256 },
+    tags: [ 'student', 'work' ]
+  }
+]
+
+
+
+products> db.products.find({ tags: "gaming" })
+[
+  {
+    _id: ObjectId('69b7c6a616ef2dd6c87c290a'),
+    name: 'Gaming PC',
+    category: 'Laptops',
+    price: 2500,
+    stock: 5,
+    specs: { ram: 32, storage: 1024 },
+    tags: [ 'gaming', 'high-end' ]
+  },
+  {
+    _id: ObjectId('69b7c6a616ef2dd6c87c290f'),
+    name: 'Mechanical Keyboard',
+    category: 'Accessories',
+    price: 150,
+    stock: 100,
+    specs: { type: 'RGB' },
+    tags: [ 'gaming', 'office' ]
+  },
+  {
+    _id: ObjectId('69b7c6a616ef2dd6c87c2917'),
+    name: 'VR Headset',
+    category: 'Gaming',
+    price: 500,
+    stock: 10,
+    specs: { resolution: '4K' },
+    tags: [ 'gaming', 'vr' ]
+  },
+  {
+    _id: ObjectId('69b7c6a616ef2dd6c87c2918'),
+    name: 'Gaming Mouse Pad',
+    category: 'Accessories',
+    price: 25,
+    stock: 150,
+    specs: { size: 'XL' },
+    tags: [ 'gaming' ]
+  }
+]
+
+
+
+products> db.products.find().sort({ price: -1 })
+[
+  {
+    _id: ObjectId('69b7c6a616ef2dd6c87c290a'),
+    name: 'Gaming PC',
+    category: 'Laptops',
+    price: 2500,
+    stock: 5,
+    specs: { ram: 32, storage: 1024 },
+    tags: [ 'gaming', 'high-end' ]
+  },
+  {
+    _id: ObjectId('69b7c6a616ef2dd6c87c2909'),
+    name: 'Laptop Pro',
+    category: 'Laptops',
+    price: 1200,
+    stock: 15,
+    specs: { ram: 16, storage: 512 },
+    tags: [ 'work', 'tech' ]
+  },
+  {
+    _id: ObjectId('69b7c6a616ef2dd6c87c290b'),
+    name: 'Phone 15',
+    category: 'Phones',
+    price: 900,
+    stock: 50,
+    specs: { ram: 8, storage: 128 },
+    tags: [ 'mobile', 'new' ]
+  },
+  {
+    _id: ObjectId('69b7c6a616ef2dd6c87c290c'),
+    name: 'Phone 14',
+    category: 'Phones',
+    price: 700,
+    stock: 20,
+    specs: { ram: 6, storage: 128 },
+    tags: [ 'mobile', 'sale' ]
+  },
+  {
+    _id: ObjectId('69b7c6a616ef2dd6c87c290d'),
+    name: 'Tablet Air',
+    category: 'Tablets',
+    price: 600,
+    stock: 30,
+    specs: { ram: 8, storage: 64 },
+    tags: [ 'media', 'lightweight' ]
+  },
+  {
+    _id: ObjectId('69b7c6a616ef2dd6c87c2917'),
+    name: 'VR Headset',
+    category: 'Gaming',
+    price: 500,
+    stock: 10,
+    specs: { resolution: '4K' },
+    tags: [ 'gaming', 'vr' ]
+  },
+  {
+    _id: ObjectId('69b7c6a616ef2dd6c87c290e'),
+    name: 'Monitor 4K',
+    category: 'Accessories',
+    price: 400,
+    stock: 12,
+    specs: { size: 27 },
+    tags: [ 'office', 'display' ]
+  },
+  {
+    _id: ObjectId('69b7c6a616ef2dd6c87c2913'),
+    name: 'Budget Laptop',
+    category: 'Laptops',
+    price: 400,
+    stock: 25,
+    specs: { ram: 8, storage: 256 },
+    tags: [ 'student', 'work' ]
+  },
+  {
+    _id: ObjectId('69b7c6a616ef2dd6c87c291a'),
+    name: 'Graphic Tablet',
+    category: 'Accessories',
+    price: 350,
+    stock: 15,
+    specs: { levels: 8192 },
+    tags: [ 'design', 'art' ]
+  },
+  {
+    _id: ObjectId('69b7c6a616ef2dd6c87c2914'),
+    name: 'Noise Cancelling Headphones',
+    category: 'Audio',
+    price: 300,
+    stock: 30,
+    specs: { anc: true },
+    tags: [ 'music', 'travel' ]
+  },
+  {
+    _id: ObjectId('69b7c6a616ef2dd6c87c2912'),
+    name: 'Smart Watch',
+    category: 'Wearables',
+    price: 250,
+    stock: 45,
+    specs: { waterproof: true },
+    tags: [ 'fitness', 'tech' ]
+  },
+  {
+    _id: ObjectId('69b7c6a616ef2dd6c87c2919'),
+    name: 'Budget Phone',
+    category: 'Phones',
+    price: 200,
+    stock: 100,
+    specs: { ram: 4, storage: 64 },
+    tags: [ 'mobile', 'sale' ]
+  },
+  {
+    _id: ObjectId('69b7c6a616ef2dd6c87c290f'),
+    name: 'Mechanical Keyboard',
+    category: 'Accessories',
+    price: 150,
+    stock: 100,
+    specs: { type: 'RGB' },
+    tags: [ 'gaming', 'office' ]
+  },
+  {
+    _id: ObjectId('69b7c6a616ef2dd6c87c291b'),
+    name: 'E-Reader',
+    category: 'Tablets',
+    price: 130,
+    stock: 40,
+    specs: { ink: 'e-paper' },
+    tags: [ 'reading', 'lightweight' ]
+  },
+  {
+    _id: ObjectId('69b7c6a616ef2dd6c87c2916'),
+    name: 'External SSD',
+    category: 'Accessories',
+    price: 120,
+    stock: 80,
+    specs: { storage: 1024 },
+    tags: [ 'storage', 'tech' ]
+  },
+  {
+    _id: ObjectId('69b7c6a616ef2dd6c87c2915'),
+    name: 'Bluetooth Speaker',
+    category: 'Audio',
+    price: 100,
+    stock: 60,
+    specs: { wattage: 20 },
+    tags: [ 'party', 'outdoors' ]
+  },
+  {
+    _id: ObjectId('69b7c58316ef2dd6c87c2908'),
+    name: 'Clothes',
+    price: 90,
+    stock: 50
+  },
+  {
+    _id: ObjectId('69b7c6a616ef2dd6c87c291c'),
+    name: 'Webcam Pro',
+    category: 'Accessories',
+    price: 90,
+    stock: 55,
+    specs: { resolution: '1080p' },
+    tags: [ 'work', 'streaming' ]
+  },
+  {
+    _id: ObjectId('69b7c58316ef2dd6c87c2907'),
+    name: 'webcam Pro',
+    price: 89,
+    stock: 44
+  },
+  {
+    _id: ObjectId('69b7c6a616ef2dd6c87c2910'),
+    name: 'Wireless Mouse',
+    category: 'Accessories',
+    price: 50,
+    stock: 200,
+    specs: { battery: 'AA' },
+    tags: [ 'office' ]
+  }
+]
+
+
+
+
+products> db.products.find().sort({ price: 1 }).limit(5)
+[
+  {
+    _id: ObjectId('69b7c6a616ef2dd6c87c2911'),
+    name: 'USB-C Cable',
+    category: 'Accessories',
+    price: 15,
+    stock: 500,
+    specs: { length: 2 },
+    tags: [ 'cable', 'utility' ]
+  },
+  {
+    _id: ObjectId('69b7c6a616ef2dd6c87c2918'),
+    name: 'Gaming Mouse Pad',
+    category: 'Accessories',
+    price: 25,
+    stock: 150,
+    specs: { size: 'XL' },
+    tags: [ 'gaming' ]
+  },
+  {
+    _id: ObjectId('69b7c6a616ef2dd6c87c2910'),
+    name: 'Wireless Mouse',
+    category: 'Accessories',
+    price: 50,
+    stock: 200,
+    specs: { battery: 'AA' },
+    tags: [ 'office' ]
+  },
+  {
+    _id: ObjectId('69b7c58316ef2dd6c87c2907'),
+    name: 'webcam Pro',
+    price: 89,
+    stock: 44
+  },
+  {
+    _id: ObjectId('69b7c58316ef2dd6c87c2908'),
+    name: 'Clothes',
+    price: 90,
+    stock: 50
+  }
+]
+
+
+
+products> db.products.countDocuments({ category: "Phones" })
+3
+
+
+
+products> db.products.find({ stock: { $gte: 20, $lte: 100 } })
+[
+  {
+    _id: ObjectId('69b7c58316ef2dd6c87c2907'),
+    name: 'webcam Pro',
+    price: 89,
+    stock: 44
+  },
+  {
+    _id: ObjectId('69b7c58316ef2dd6c87c2908'),
+    name: 'Clothes',
+    price: 90,
+    stock: 50
+  },
+  {
+    _id: ObjectId('69b7c6a616ef2dd6c87c290b'),
+    name: 'Phone 15',
+    category: 'Phones',
+    price: 900,
+    stock: 50,
+    specs: { ram: 8, storage: 128 },
+    tags: [ 'mobile', 'new' ]
+  },
+  {
+    _id: ObjectId('69b7c6a616ef2dd6c87c290c'),
+    name: 'Phone 14',
+    category: 'Phones',
+    price: 700,
+    stock: 20,
+    specs: { ram: 6, storage: 128 },
+    tags: [ 'mobile', 'sale' ]
+  },
+  {
+    _id: ObjectId('69b7c6a616ef2dd6c87c290d'),
+    name: 'Tablet Air',
+    category: 'Tablets',
+    price: 600,
+    stock: 30,
+    specs: { ram: 8, storage: 64 },
+    tags: [ 'media', 'lightweight' ]
+  },
+  {
+    _id: ObjectId('69b7c6a616ef2dd6c87c290f'),
+    name: 'Mechanical Keyboard',
+    category: 'Accessories',
+    price: 150,
+    stock: 100,
+    specs: { type: 'RGB' },
+    tags: [ 'gaming', 'office' ]
+  },
+  {
+    _id: ObjectId('69b7c6a616ef2dd6c87c2912'),
+    name: 'Smart Watch',
+    category: 'Wearables',
+    price: 250,
+    stock: 45,
+    specs: { waterproof: true },
+    tags: [ 'fitness', 'tech' ]
+  },
+  {
+    _id: ObjectId('69b7c6a616ef2dd6c87c2913'),
+    name: 'Budget Laptop',
+    category: 'Laptops',
+    price: 400,
+    stock: 25,
+    specs: { ram: 8, storage: 256 },
+    tags: [ 'student', 'work' ]
+  },
+  {
+    _id: ObjectId('69b7c6a616ef2dd6c87c2914'),
+    name: 'Noise Cancelling Headphones',
+    category: 'Audio',
+    price: 300,
+    stock: 30,
+    specs: { anc: true },
+    tags: [ 'music', 'travel' ]
+  },
+  {
+    _id: ObjectId('69b7c6a616ef2dd6c87c2915'),
+    name: 'Bluetooth Speaker',
+    category: 'Audio',
+    price: 100,
+    stock: 60,
+    specs: { wattage: 20 },
+    tags: [ 'party', 'outdoors' ]
+  },
+  {
+    _id: ObjectId('69b7c6a616ef2dd6c87c2916'),
+    name: 'External SSD',
+    category: 'Accessories',
+    price: 120,
+    stock: 80,
+    specs: { storage: 1024 },
+    tags: [ 'storage', 'tech' ]
+  },
+  {
+    _id: ObjectId('69b7c6a616ef2dd6c87c2919'),
+    name: 'Budget Phone',
+    category: 'Phones',
+    price: 200,
+    stock: 100,
+    specs: { ram: 4, storage: 64 },
+    tags: [ 'mobile', 'sale' ]
+  },
+  {
+    _id: ObjectId('69b7c6a616ef2dd6c87c291b'),
+    name: 'E-Reader',
+    category: 'Tablets',
+    price: 130,
+    stock: 40,
+    specs: { ink: 'e-paper' },
+    tags: [ 'reading', 'lightweight' ]
+  },
+  {
+    _id: ObjectId('69b7c6a616ef2dd6c87c291c'),
+    name: 'Webcam Pro',
+    category: 'Accessories',
+    price: 90,
+    stock: 55,
+    specs: { resolution: '1080p' },
+    tags: [ 'work', 'streaming' ]
+  }
+]
+
+
+
+
+products> db.products.find({}, { _id: 0, name: 1, price: 1 })
+[
+  { name: 'webcam Pro', price: 89 },
+  { name: 'Clothes', price: 90 },
+  { name: 'Laptop Pro', price: 1200 },
+  { name: 'Gaming PC', price: 2500 },
+  { name: 'Phone 15', price: 900 },
+  { name: 'Phone 14', price: 700 },
+  { name: 'Tablet Air', price: 600 },
+  { name: 'Monitor 4K', price: 400 },
+  { name: 'Mechanical Keyboard', price: 150 },
+  { name: 'Wireless Mouse', price: 50 },
+  { name: 'USB-C Cable', price: 15 },
+  { name: 'Smart Watch', price: 250 },
+  { name: 'Budget Laptop', price: 400 },
+  { name: 'Noise Cancelling Headphones', price: 300 },
+  { name: 'Bluetooth Speaker', price: 100 },
+  { name: 'External SSD', price: 120 },
+  { name: 'VR Headset', price: 500 },
+  { name: 'Gaming Mouse Pad', price: 25 },
+  { name: 'Budget Phone', price: 200 },
+  { name: 'Graphic Tablet', price: 350 }
+]
+
+
+
+
+products> db.products.find({ category: "Laptops", price: { $gt: 500 } })
+[
+  {
+    _id: ObjectId('69b7c6a616ef2dd6c87c2909'),
+    name: 'Laptop Pro',
+    category: 'Laptops',
+    price: 1200,
+    stock: 15,
+    specs: { ram: 16, storage: 512 },
+    tags: [ 'work', 'tech' ]
+  },
+  {
+    _id: ObjectId('69b7c6a616ef2dd6c87c290a'),
+    name: 'Gaming PC',
+    category: 'Laptops',
+    price: 2500,
+    stock: 5,
+    specs: { ram: 32, storage: 1024 },
+    tags: [ 'gaming', 'high-end' ]
+  }
+]
+
+
+
+products> db.products.find({ price: { $gte: 100, $lte: 500 } })
+[
+  {
+    _id: ObjectId('69b7c6a616ef2dd6c87c290e'),
+    name: 'Monitor 4K',
+    category: 'Accessories',
+    price: 400,
+    stock: 12,
+    specs: { size: 27 },
+    tags: [ 'office', 'display' ]
+  },
+  {
+    _id: ObjectId('69b7c6a616ef2dd6c87c290f'),
+    name: 'Mechanical Keyboard',
+    category: 'Accessories',
+    price: 150,
+    stock: 100,
+    specs: { type: 'RGB' },
+    tags: [ 'gaming', 'office' ]
+  },
+  {
+    _id: ObjectId('69b7c6a616ef2dd6c87c2912'),
+    name: 'Smart Watch',
+    category: 'Wearables',
+    price: 250,
+    stock: 45,
+    specs: { waterproof: true },
+    tags: [ 'fitness', 'tech' ]
+  },
+  {
+    _id: ObjectId('69b7c6a616ef2dd6c87c2913'),
+    name: 'Budget Laptop',
+    category: 'Laptops',
+    price: 400,
+    stock: 25,
+    specs: { ram: 8, storage: 256 },
+    tags: [ 'student', 'work' ]
+  },
+  {
+    _id: ObjectId('69b7c6a616ef2dd6c87c2914'),
+    name: 'Noise Cancelling Headphones',
+    category: 'Audio',
+    price: 300,
+    stock: 30,
+    specs: { anc: true },
+    tags: [ 'music', 'travel' ]
+  },
+  {
+    _id: ObjectId('69b7c6a616ef2dd6c87c2915'),
+    name: 'Bluetooth Speaker',
+    category: 'Audio',
+    price: 100,
+    stock: 60,
+    specs: { wattage: 20 },
+    tags: [ 'party', 'outdoors' ]
+  },
+  {
+    _id: ObjectId('69b7c6a616ef2dd6c87c2916'),
+    name: 'External SSD',
+    category: 'Accessories',
+    price: 120,
+    stock: 80,
+    specs: { storage: 1024 },
+    tags: [ 'storage', 'tech' ]
+  },
+  {
+    _id: ObjectId('69b7c6a616ef2dd6c87c2917'),
+    name: 'VR Headset',
+    category: 'Gaming',
+    price: 500,
+    stock: 10,
+    specs: { resolution: '4K' },
+    tags: [ 'gaming', 'vr' ]
+  },
+  {
+    _id: ObjectId('69b7c6a616ef2dd6c87c2919'),
+    name: 'Budget Phone',
+    category: 'Phones',
+    price: 200,
+    stock: 100,
+    specs: { ram: 4, storage: 64 },
+    tags: [ 'mobile', 'sale' ]
+  },
+  {
+    _id: ObjectId('69b7c6a616ef2dd6c87c291a'),
+    name: 'Graphic Tablet',
+    category: 'Accessories',
+    price: 350,
+    stock: 15,
+    specs: { levels: 8192 },
+    tags: [ 'design', 'art' ]
+  },
+  {
+    _id: ObjectId('69b7c6a616ef2dd6c87c291b'),
+    name: 'E-Reader',
+    category: 'Tablets',
+    price: 130,
+    stock: 40,
+    specs: { ink: 'e-paper' },
+    tags: [ 'reading', 'lightweight' ]
+  }
+]
+
+
+
+
+products> db.products.find({ category: { $ne: "Accessories" } })
+[
+  {
+    _id: ObjectId('69b7c58316ef2dd6c87c2907'),
+    name: 'webcam Pro',
+    price: 89,
+    stock: 44
+  },
+  {
+    _id: ObjectId('69b7c58316ef2dd6c87c2908'),
+    name: 'Clothes',
+    price: 90,
+    stock: 50
+  },
+  {
+    _id: ObjectId('69b7c6a616ef2dd6c87c2909'),
+    name: 'Laptop Pro',
+    category: 'Laptops',
+    price: 1200,
+    stock: 15,
+    specs: { ram: 16, storage: 512 },
+    tags: [ 'work', 'tech' ]
+  },
+  {
+    _id: ObjectId('69b7c6a616ef2dd6c87c290a'),
+    name: 'Gaming PC',
+    category: 'Laptops',
+    price: 2500,
+    stock: 5,
+    specs: { ram: 32, storage: 1024 },
+    tags: [ 'gaming', 'high-end' ]
+  },
+  {
+    _id: ObjectId('69b7c6a616ef2dd6c87c290b'),
+    name: 'Phone 15',
+    category: 'Phones',
+    price: 900,
+    stock: 50,
+    specs: { ram: 8, storage: 128 },
+    tags: [ 'mobile', 'new' ]
+  },
+  {
+    _id: ObjectId('69b7c6a616ef2dd6c87c290c'),
+    name: 'Phone 14',
+    category: 'Phones',
+    price: 700,
+    stock: 20,
+    specs: { ram: 6, storage: 128 },
+    tags: [ 'mobile', 'sale' ]
+  },
+  {
+    _id: ObjectId('69b7c6a616ef2dd6c87c290d'),
+    name: 'Tablet Air',
+    category: 'Tablets',
+    price: 600,
+    stock: 30,
+    specs: { ram: 8, storage: 64 },
+    tags: [ 'media', 'lightweight' ]
+  },
+  {
+    _id: ObjectId('69b7c6a616ef2dd6c87c2912'),
+    name: 'Smart Watch',
+    category: 'Wearables',
+    price: 250,
+    stock: 45,
+    specs: { waterproof: true },
+    tags: [ 'fitness', 'tech' ]
+  },
+  {
+    _id: ObjectId('69b7c6a616ef2dd6c87c2913'),
+    name: 'Budget Laptop',
+    category: 'Laptops',
+    price: 400,
+    stock: 25,
+    specs: { ram: 8, storage: 256 },
+    tags: [ 'student', 'work' ]
+  },
+  {
+    _id: ObjectId('69b7c6a616ef2dd6c87c2914'),
+    name: 'Noise Cancelling Headphones',
+    category: 'Audio',
+    price: 300,
+    stock: 30,
+    specs: { anc: true },
+    tags: [ 'music', 'travel' ]
+  },
+  {
+    _id: ObjectId('69b7c6a616ef2dd6c87c2915'),
+    name: 'Bluetooth Speaker',
+    category: 'Audio',
+    price: 100,
+    stock: 60,
+    specs: { wattage: 20 },
+    tags: [ 'party', 'outdoors' ]
+  },
+  {
+    _id: ObjectId('69b7c6a616ef2dd6c87c2917'),
+    name: 'VR Headset',
+    category: 'Gaming',
+    price: 500,
+    stock: 10,
+    specs: { resolution: '4K' },
+    tags: [ 'gaming', 'vr' ]
+  },
+  {
+    _id: ObjectId('69b7c6a616ef2dd6c87c2919'),
+    name: 'Budget Phone',
+    category: 'Phones',
+    price: 200,
+    stock: 100,
+    specs: { ram: 4, storage: 64 },
+    tags: [ 'mobile', 'sale' ]
+  },
+  {
+    _id: ObjectId('69b7c6a616ef2dd6c87c291b'),
+    name: 'E-Reader',
+    category: 'Tablets',
+    price: 130,
+    stock: 40,
+    specs: { ink: 'e-paper' },
+    tags: [ 'reading', 'lightweight' ]
+  }
+]
+
+
+
+
+products> db.products.find({ stock: { $lt: 20 } })
+[
+  {
+    _id: ObjectId('69b7c6a616ef2dd6c87c2909'),
+    name: 'Laptop Pro',
+    category: 'Laptops',
+    price: 1200,
+    stock: 15,
+    specs: { ram: 16, storage: 512 },
+    tags: [ 'work', 'tech' ]
+  },
+  {
+    _id: ObjectId('69b7c6a616ef2dd6c87c290a'),
+    name: 'Gaming PC',
+    category: 'Laptops',
+    price: 2500,
+    stock: 5,
+    specs: { ram: 32, storage: 1024 },
+    tags: [ 'gaming', 'high-end' ]
+  },
+  {
+    _id: ObjectId('69b7c6a616ef2dd6c87c290e'),
+    name: 'Monitor 4K',
+    category: 'Accessories',
+    price: 400,
+    stock: 12,
+    specs: { size: 27 },
+    tags: [ 'office', 'display' ]
+  },
+  {
+    _id: ObjectId('69b7c6a616ef2dd6c87c2917'),
+    name: 'VR Headset',
+    category: 'Gaming',
+    price: 500,
+    stock: 10,
+    specs: { resolution: '4K' },
+    tags: [ 'gaming', 'vr' ]
+  },
+  {
+    _id: ObjectId('69b7c6a616ef2dd6c87c291a'),
+    name: 'Graphic Tablet',
+    category: 'Accessories',
+    price: 350,
+    stock: 15,
+    specs: { levels: 8192 },
+    tags: [ 'design', 'art' ]
+  }
+]
+
+
+
+
+products> db.products.find({ tags: { $all: ["gaming", "office"] } })
+[
+  {
+    _id: ObjectId('69b7c6a616ef2dd6c87c290f'),
+    name: 'Mechanical Keyboard',
+    category: 'Accessories',
+    price: 150,
+    stock: 100,
+    specs: { type: 'RGB' },
+    tags: [ 'gaming', 'office' ]
+  }
+]
+
+
+
+products> db.products.find({ "specs.storage": { $gte: 512 } })
+[
+  {
+    _id: ObjectId('69b7c6a616ef2dd6c87c2909'),
+    name: 'Laptop Pro',
+    category: 'Laptops',
+    price: 1200,
+    stock: 15,
+    specs: { ram: 16, storage: 512 },
+    tags: [ 'work', 'tech' ]
+  },
+  {
+    _id: ObjectId('69b7c6a616ef2dd6c87c290a'),
+    name: 'Gaming PC',
+    category: 'Laptops',
+    price: 2500,
+    stock: 5,
+    specs: { ram: 32, storage: 1024 },
+    tags: [ 'gaming', 'high-end' ]
+  },
+  {
+    _id: ObjectId('69b7c6a616ef2dd6c87c2916'),
+    name: 'External SSD',
+    category: 'Accessories',
+    price: 120,
+    stock: 80,
+    specs: { storage: 1024 },
+    tags: [ 'storage', 'tech' ]
+  }
+]
+
+
+
+
+products> db.products.aggregate([
+|   { $group: { _id: null, totalStock: { $sum: "$stock" } } }
+| ])
+[ { _id: null, totalStock: 1636 } ]
+
+
+
+products> db.products.find().sort({ price: -1 }).limit(1)
+[
+  {
+    _id: ObjectId('69b7c6a616ef2dd6c87c290a'),
+    name: 'Gaming PC',
+    category: 'Laptops',
+    price: 2500,
+    stock: 5,
+    specs: { ram: 32, storage: 1024 },
+    tags: [ 'gaming', 'high-end' ]
+  }
+]
+
+
+
+products> db.products.find({ name: /Phone/i })
+[
+  {
+    _id: ObjectId('69b7c6a616ef2dd6c87c290b'),
+    name: 'Phone 15',
+    category: 'Phones',
+    price: 900,
+    stock: 50,
+    specs: { ram: 8, storage: 128 },
+    tags: [ 'mobile', 'new' ]
+  },
+  {
+    _id: ObjectId('69b7c6a616ef2dd6c87c290c'),
+    name: 'Phone 14',
+    category: 'Phones',
+    price: 700,
+    stock: 20,
+    specs: { ram: 6, storage: 128 },
+    tags: [ 'mobile', 'sale' ]
+  },
+  {
+    _id: ObjectId('69b7c6a616ef2dd6c87c2914'),
+    name: 'Noise Cancelling Headphones',
+    category: 'Audio',
+    price: 300,
+    stock: 30,
+    specs: { anc: true },
+    tags: [ 'music', 'travel' ]
+  },
+  {
+    _id: ObjectId('69b7c6a616ef2dd6c87c2919'),
+    name: 'Budget Phone',
+    category: 'Phones',
+    price: 200,
+    stock: 100,
+    specs: { ram: 4, storage: 64 },
+    tags: [ 'mobile', 'sale' ]
+  }
+]
+
+
+
+products> db.products.aggregate([
+|   {
+|     $group: {
+|       _id: "$category",
+|       count: { $sum: 1 },
+|       avgPrice: { $avg: "$price" }
+|     }
+|   }
+| ])
+[
+  { _id: 'Tablets', count: 2, avgPrice: 365 },
+  { _id: 'Laptops', count: 3, avgPrice: 1366.6666666666667 },
+  { _id: null, count: 2, avgPrice: 89.5 },
+  { _id: 'Phones', count: 3, avgPrice: 600 },
+  { _id: 'Accessories', count: 8, avgPrice: 150 },
+  { _id: 'Wearables', count: 1, avgPrice: 250 },
+  { _id: 'Audio', count: 2, avgPrice: 200 },
+  { _id: 'Gaming', count: 1, avgPrice: 500 }
+]
+
+
+
+
+products> db.products.find({ stock: { $gt: 50 }, price: { $lt: 200 } })
+[
+  {
+    _id: ObjectId('69b7c6a616ef2dd6c87c290f'),
+    name: 'Mechanical Keyboard',
+    category: 'Accessories',
+    price: 150,
+    stock: 100,
+    specs: { type: 'RGB' },
+    tags: [ 'gaming', 'office' ]
+  },
+  {
+    _id: ObjectId('69b7c6a616ef2dd6c87c2910'),
+    name: 'Wireless Mouse',
+    category: 'Accessories',
+    price: 50,
+    stock: 200,
+    specs: { battery: 'AA' },
+    tags: [ 'office' ]
+  },
+  {
+    _id: ObjectId('69b7c6a616ef2dd6c87c2911'),
+    name: 'USB-C Cable',
+    category: 'Accessories',
+    price: 15,
+    stock: 500,
+    specs: { length: 2 },
+    tags: [ 'cable', 'utility' ]
+  },
+  {
+    _id: ObjectId('69b7c6a616ef2dd6c87c2915'),
+    name: 'Bluetooth Speaker',
+    category: 'Audio',
+    price: 100,
+    stock: 60,
+    specs: { wattage: 20 },
+    tags: [ 'party', 'outdoors' ]
+  },
+  {
+    _id: ObjectId('69b7c6a616ef2dd6c87c2916'),
+    name: 'External SSD',
+    category: 'Accessories',
+    price: 120,
+    stock: 80,
+    specs: { storage: 1024 },
+    tags: [ 'storage', 'tech' ]
+  },
+  {
+    _id: ObjectId('69b7c6a616ef2dd6c87c2918'),
+    name: 'Gaming Mouse Pad',
+    category: 'Accessories',
+    price: 25,
+    stock: 150,
+    specs: { size: 'XL' },
+    tags: [ 'gaming' ]
+  },
+  {
+    _id: ObjectId('69b7c6a616ef2dd6c87c291c'),
+    name: 'Webcam Pro',
+    category: 'Accessories',
+    price: 90,
+    stock: 55,
+    specs: { resolution: '1080p' },
+    tags: [ 'work', 'streaming' ]
+  }
+]
+
+
+
